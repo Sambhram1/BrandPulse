@@ -19,7 +19,7 @@ By Wednesday, the brief is ready. By Friday, it's reviewed. The video shoots the
 ## Architecture
 
 ```
-Social APIs (simulated)
+Social APIs 
         │
         ▼
 [Auto Loader — Spark Structured Streaming]
@@ -240,6 +240,6 @@ brandpulse/
 | Criterion | How BrandPulse scores |
 |---|---|
 | **Databricks Usage (30%)** | Delta Lake (all 5 tables), DLT (3-layer pipeline with quality gates), Spark Structured Streaming (Auto Loader), Spark ML (Pipeline + KMeans + TF-IDF), MLflow (every run logged), Mosaic AI (Llama 3 endpoint), Databricks Apps |
-| **Accuracy (25%)** | Competitor dominance calculated from real post-level data; sentiment UDF on actual captions; silhouette score validates cluster quality; mock fallbacks are schema-identical to live data |
+| **Accuracy (25%)** | Competitor dominance calculated from real post-level data; sentiment UDF on actual captions; silhouette score validates cluster quality; mock fallbacks are schema-identical to live data 
 | **Innovation (25%)** | Full trend-to-video loop inside a single Databricks workspace; human-in-the-loop governance with MLflow audit trail; fal.ai Veo3 integration for generative video; feedback closes the RLHF loop |
 | **Demo (20%)** | App works offline with mock data; video player always shows a real MP4; 5-minute script hits every judge touchpoint; MLflow UI shows live experiment data |

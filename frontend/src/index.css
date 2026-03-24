@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --accent: #00D68F;
+  --accent-rgb: 0, 214, 143;
+  --amber-rgb: 245, 158, 11;
+  --danger-rgb: 240, 71, 71;
+  --purple-rgb: 139, 92, 246;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #09090B;
+  color: #FAFAFA;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Noise texture overlay ─────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Typography ────────────────────────────────────────────────────────────── */
+.font-display { font-family: 'Syne', sans-serif; }
+.font-mono { font-family: 'Fira Code', monospace; }
+
+/* ── Glow effects ──────────────────────────────────────────────────────────── */
+.glow-accent {
+  box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.3), 0 0 20px rgba(var(--accent-rgb), 0.15);
+}
+.glow-text {
+  text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.6);
+}
+
+/* ── Card base ─────────────────────────────────────────────────────────────── */
+.card {
+  background: #111115;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  border-color: rgba(255,255,255,0.1);
+}
+.card-elevated {
+  background: #1C1C22;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Pill badges ───────────────────────────────────────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.pill-accent  { background: rgba(var(--accent-rgb),  0.12); color: var(--accent); }
+.pill-amber   { background: rgba(var(--amber-rgb),   0.12); color: #F59E0B; }
+.pill-danger  { background: rgba(var(--danger-rgb),  0.12); color: #F04747; }
+.pill-purple  { background: rgba(var(--purple-rgb),  0.12); color: #8B5CF6; }
+.pill-muted   { background: rgba(255,255,255,0.06); color: #A1A1AA; }
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  outline: none;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-approve {
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+  border-color: rgba(var(--accent-rgb), 0.25);
+}
+.btn-approve:hover:not(:disabled) {
+  background: rgba(var(--accent-rgb), 0.2);
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.2);
+}
+
+.btn-reject {
+  background: rgba(var(--danger-rgb), 0.1);
+  color: #F04747;
+  border-color: rgba(var(--danger-rgb), 0.2);
+}
+.btn-reject:hover:not(:disabled) {
+  background: rgba(var(--danger-rgb), 0.18);
+}
+
+.btn-tweak {
+  background: rgba(var(--purple-rgb), 0.1);
+  color: #8B5CF6;
+  border-color: rgba(var(--purple-rgb), 0.2);
+}
+.btn-tweak:hover:not(:disabled) {
+  background: rgba(var(--purple-rgb), 0.18);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #71717A;
+  border-color: rgba(255,255,255,0.08);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.05); color: #A1A1AA; }
+
+/* ── Inputs ────────────────────────────────────────────────────────────────── */
+.input-base {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #FAFAFA;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  resize: vertical;
+}
+.input-base:focus {
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.08);
+}
+.input-base::placeholder { color: #52525B; }
+
+select.input-base option { background: #1C1C22; }
+
+/* ── Live dot pulse ────────────────────────────────────────────────────────── */
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+.live-dot {
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: livePulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.8);
+}
+
+/* ── Progress bar ──────────────────────────────────────────────────────────── */
+@keyframes progressFill {
+  from { width: 0%; }
+}
+.progress-fill {
+  animation: progressFill 30s linear forwards;
+}
+
+/* ── Number counter ────────────────────────────────────────────────────────── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.count-in { animation: countUp 0.5s ease forwards; }
+
+/* ── Toast ─────────────────────────────────────────────────────────────────── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-8px) scale(0.96); }
+}
+.toast-enter { animation: toastIn 0.3s ease forwards; }
+.toast-exit  { animation: toastOut 0.3s ease forwards; }
+
+/* ── Video player ──────────────────────────────────────────────────────────── */
+video {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  background: #000;
+}
+video::-webkit-media-controls-panel { background: rgba(0,0,0,0.7); }
+
+/* ── Recharts overrides ────────────────────────────────────────────────────── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #1C1C22 !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 8px !important;
+}
+.recharts-cartesian-axis-tick-value { fill: #52525B; font-size: 11px; }

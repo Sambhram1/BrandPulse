@@ -157,7 +157,7 @@ def simulate_stream() -> None:
 
 
 if __name__ == "__main__":
-    # WHY: Write one immediate batch so judges can trigger the DLT pipeline right away,
-    # then keep streaming so the Live indicator in the App stays active.
+    # Fallback only — use social_ingestion.py for real Instagram data.
+    # Run this directly only when Apify credentials are not yet configured.
+    print("[mock] Writing one fallback batch to BRONZE_PATH …")
     write_single_batch()
-    simulate_stream()
